@@ -69,5 +69,3 @@ ipcMain.handle('chat:sendMessage', async (_event, message: string) => {
     return 'Error: Failed to get response from WanQing AI service. Please try again later.'
   }
 })
-
-export {}
