@@ -1,7 +1,7 @@
 <template>
-  <div class="flex h-screen max-w-3xl mx-auto my-8 bg-white rounded-lg shadow-xl overflow-hidden">
+  <div class="flex h-screen bg-gray-100">
     <Sidebar />
-    <div class="flex flex-col grow">
+    <div class="flex flex-col flex-1">
       <MessageDisplay />
       <ChatInput />
     </div>
