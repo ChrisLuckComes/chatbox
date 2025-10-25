@@ -1,6 +1,18 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.2-alpha.2](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.1...v0.1.2-alpha.2) (2025-10-25)
+
+
+### ✨ 新功能
+
+* update build workflow to support cross-platform builds and translate component comments to Chinese ([e3816cc](https://github.com/ChrisLuckComes/chatbox/commit/e3816ccb7e61f3b4ef32979b6295e601d1b40d87))
+
+
+### 🐛 问题修复
+
+* add permissions for GitHub Actions to create releases ([7315de6](https://github.com/ChrisLuckComes/chatbox/commit/7315de61e314e7a95899b6abb172ed25eb423efd))
+
 ### [0.1.2-alpha.1](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.0...v0.1.2-alpha.1) (2025-10-25)
 
 ### [0.1.2-alpha.0](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.1-alpha.2...v0.1.2-alpha.0) (2025-10-25)
