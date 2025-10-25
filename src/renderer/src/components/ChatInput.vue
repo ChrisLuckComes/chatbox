@@ -30,32 +30,32 @@ async function sendMessage() {
 
   const userMessage = message.value.trim()
 
-  // Add user message to chat
+  // 添加用户消息到聊天
   chatStore.addMessageToCurrentTopic(userMessage, 'user')
 
-  // Clear input
+  // 清空输入框
   message.value = ''
   isSending.value = true
 
   try {
-    // Send message to main process
+    // 发送消息到主进程
     const response = await window.api.sendMessage(userMessage)
 
-    // Parse the response
+    // 解析响应
     let responseData
     try {
       responseData = JSON.parse(response)
     } catch {
-      // If response is not JSON, it's an error message
+      // 如果响应不是JSON格式，则是错误消息
       chatStore.addMessageToCurrentTopic(response, 'ai')
       return
     }
 
-    // Add AI message with typing effect
+    // 添加AI消息并显示打字效果
     const messageId = Date.now()
     chatStore.addMessageToCurrentTopic(responseData.fullResponse, 'ai')
 
-    // Start typing effect
+    // 开始打字效果
     const { chunks, typingSpeed } = responseData
     let chunkIndex = 0
 
@@ -65,10 +65,10 @@ async function sendMessage() {
         chunkIndex++
         setTimeout(type, typingSpeed)
       } else {
-        // Typing complete
+        // 打字完成
         chatStore.markMessageComplete(messageId)
 
-        // Set chat topic name from AI response if this is a new chat
+        // 设置聊天主题名称从AI响应（如果是新聊天）
         // 在接收到第一个 AI 回复时更新主题名称
         if (chatStore.currentChatTopicId) {
           chatStore.setChatTopicNameFromAIResponse(chatStore.currentChatTopicId, responseData.fullResponse)
@@ -76,15 +76,15 @@ async function sendMessage() {
       }
     }
 
-    // Start typing effect
+    // 开始打字效果
     setTimeout(type, typingSpeed)
   } catch (error) {
-    console.error('Error sending message:', error)
-    // Add error message to chat
-    chatStore.addMessageToCurrentTopic('Sorry, there was an error processing your request.', 'ai')
+    console.error('发送消息时出错:', error)
+    // 添加错误消息到聊天
+    chatStore.addMessageToCurrentTopic('抱歉，处理您的请求时出现错误。', 'ai')
   } finally {
     isSending.value = false
-    // Focus input for next message
+    // 为下一条消息聚焦输入框
     inputRef.value?.focus()
   }
 }

@@ -45,7 +45,7 @@ const newChatName = ref('')
 const editingTopicId = ref<number | null>(null)
 const editTopicName = ref('')
 
-// Get chat topics and current topic from store
+// 从存储中获取聊天主题和当前主题
 const chatTopics = computed(() => chatStore.chatTopics)
 const currentChatTopicId = computed(() => chatStore.currentChatTopicId)
 

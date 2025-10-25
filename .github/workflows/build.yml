@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest, macos-latest, ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v4
@@ -24,18 +24,53 @@ jobs:
       - name: Install Dependencies
         run: npm install
           
-      - name: Build
+      - name: Build Windows
+        if: matrix.os == 'windows-latest'
         env:
           WQ_API_KEY: ${{ secrets.WQ_API_KEY }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build:win
         
-      - name: Upload Artifacts
+      - name: Build macOS
+        if: matrix.os == 'macos-latest'
+        env:
+          WQ_API_KEY: ${{ secrets.WQ_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build:mac
+        
+      - name: Build Linux
+        if: matrix.os == 'ubuntu-latest'
+        env:
+          WQ_API_KEY: ${{ secrets.WQ_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build:linux
+        
+      - name: Upload Windows Artifacts
+        if: matrix.os == 'windows-latest'
         uses: actions/upload-artifact@v4
         with:
           name: windows-artifacts
           path: |
             dist/*.exe
+            !dist/*-unpacked/
+
+      - name: Upload macOS Artifacts
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-artifacts
+          path: |
+            dist/*.dmg
+            !dist/*-unpacked/
+            
+      - name: Upload Linux Artifacts
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-artifacts
+          path: |
+            dist/*.AppImage
+            dist/*.deb
             !dist/*-unpacked/
 
   release:
@@ -44,13 +79,31 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Download Artifacts
+      - name: Download Windows Artifacts
         uses: actions/download-artifact@v4
-        
+        with:
+          name: windows-artifacts
+          path: ./artifacts/windows/
+          
+      - name: Download macOS Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: macos-artifacts
+          path: ./artifacts/macos/
+          
+      - name: Download Linux Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-artifacts
+          path: ./artifacts/linux/
+          
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: windows-artifacts/*
+          files: |
+            ./artifacts/windows/*
+            ./artifacts/macos/*
+            ./artifacts/linux/*
           draft: false
           prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') }}
           generate_release_notes: true

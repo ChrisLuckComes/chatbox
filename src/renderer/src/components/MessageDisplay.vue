@@ -30,7 +30,7 @@ import { useChatStore } from '../store/chat'
 
 const chatStore = useChatStore()
 
-// Get current chat messages with typing state
+// 获取带打字状态的当前聊天消息
 const messages = computed(() => {
   return chatStore.currentChatMessages.map(message => ({
     ...message,
