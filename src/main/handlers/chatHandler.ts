@@ -1,16 +1,22 @@
 import { ipcMain } from 'electron'
 import axios from 'axios'
+import log from 'electron-log'
+import { getApiKey } from '../store'
+
+// Configure electron-log
+log.transports.file.level = 'info'
+log.transports.console.level = 'info'
 
 // Chat message handling with typing effect
 ipcMain.handle('chat:sendMessage', async (_event, message: string) => {
-  console.log('Received message:', message)
+  log.info('Received message request:', { messageLength: message.length })
 
   try {
-    // Get API key from environment variable
-    const apiKey = process.env.WQ_API_KEY
+    // Get API key from environment variable or config file
+    const apiKey = getApiKey()
     if (!apiKey) {
-      console.warn('WanQing API key not found in environment variables')
-      return 'Error: WanQing API key not configured. Please set WQ_API_KEY environment variable.'
+      log.warn('WanQing API key not found in environment variables or config file')
+      return 'Error: WanQing API key not configured. Please set WQ_API_KEY environment variable or create a config.json file in the application directory.'
     }
 
     // Call WanQing StreamLake API
@@ -40,7 +46,8 @@ ipcMain.handle('chat:sendMessage', async (_event, message: string) => {
 
     // Extract the AI response
     const aiResponse = response.data.choices[0].message.content
-    console.log('WanQing AI response received:', aiResponse)
+    log.info('WanQing AI response received', { responseLength: aiResponse.length })
+    log.debug('Response content:', aiResponse)
 
     // Send response character by character for typing effect
     const responseChunks: string[] = []
@@ -54,9 +61,17 @@ ipcMain.handle('chat:sendMessage', async (_event, message: string) => {
       typingSpeed: 30 // 毫秒 per character
     })
   } catch (error) {
-    console.error('Error calling WanQing API:', error)
+    log.error('Error calling WanQing API:', error)
 
     if (axios.isAxiosError(error)) {
+      const errorDetails = {
+        status: error.response?.status,
+        code: error.response?.data?.error?.code,
+        message: error.message,
+        url: error.config?.url
+      }
+      log.error('API Error Details:', errorDetails)
+      
       if (error.response?.status === 401) {
         return 'Error: Invalid API key. Please check your WanQing API key configuration.'
       } else if (error.response?.status === 429) {

@@ -2,14 +2,11 @@
   <div class="grow p-4 bg-white">
     <div class="space-y-4">
       <div v-for="message in messages" :key="message.id" class="flex">
-        <div 
+        <div
           :class="[
             'max-w-full px-4 py-2 rounded-lg',
-            message.sender === 'user' 
-              ? 'bg-blue-600 text-white ml-auto' 
-              : 'bg-gray-200 text-gray-800 mr-auto'
-          ]"
-        >
+            message.sender === 'user' ? 'bg-blue-600 text-white ml-auto' : 'bg-gray-200 text-gray-800 mr-auto'
+          ]">
           <p class="text-sm">
             <span v-if="message.isTyping" class="typing-text">{{ message.displayText }}</span>
             <span v-else>{{ message.text }}</span>
@@ -17,7 +14,7 @@
           </p>
         </div>
       </div>
-      
+
       <!-- Empty state -->
       <div v-if="messages.length === 0" class="text-center text-gray-500 mt-8">
         <p class="text-lg">No messages yet</p>
@@ -58,7 +55,13 @@ const messages = computed(() => {
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 </style>

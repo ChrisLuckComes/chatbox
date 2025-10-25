@@ -32,14 +32,34 @@ export const useChatStore = defineStore('chat', {
     },
   },
   actions: {
-    addChatTopic(name: string) {
+    addChatTopic() {
       const newTopic: ChatTopic = {
         id: Date.now(),
-        name,
-        messages: [],
-      };
-      this.chatTopics.push(newTopic);
-      this.currentChatTopicId = newTopic.id;
+        name: 'New Chat',
+        messages: []
+      }
+      this.chatTopics.push(newTopic)
+      this.currentChatTopicId = newTopic.id
+    },
+    renameChatTopic(id: number, newName: string) {
+      const topic = this.chatTopics.find(topic => topic.id === id);
+      if (topic) {
+        topic.name = newName;
+      }
+    },
+    setChatTopicNameFromAIResponse(chatId: number, aiResponse: string) {
+      // 从AI回复中提取对话主题概括
+      const topic = this.chatTopics.find(topic => topic.id === chatId);
+      const isDefaultName = topic?.name === 'New Chat';
+      const hasNoMessages = topic?.messages.length === 2; // 只有一问一答
+
+      if (topic && isDefaultName && hasNoMessages) {
+        // 只有当是默认名称且是第一次对话时才设置主题名称
+        const summary = aiResponse.length > 20 
+          ? aiResponse.substring(0, 20) + '...' 
+          : aiResponse;
+        topic.name = summary;
+      }
     },
     addMessageToCurrentTopic(text: string, sender: 'user' | 'ai') {
       if (this.currentChatTopicId) {

@@ -1,4 +1,10 @@
 singleQuote: true
 semi: false
-printWidth: 100
+printWidth: 120
 trailingComma: none
+vueIndentScriptAndStyle: false
+singleAttributePerLine: false
+htmlWhitespaceSensitivity: 'ignore'
+bracketSameLine: true
+endOfLine: 'auto'
+arrowParens: 'avoid'

@@ -1,8 +1,14 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow, globalShortcut } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import dotenv from 'dotenv'
+import log from 'electron-log'
+
+// Configure electron-log
+log.initialize({ preload: true })
+log.transports.file.resolvePathFn = () => join(app.getPath('userData'), 'logs/main.log')
+log.info('Application starting...')
 
 // Import chat handler
 import './handlers/chatHandler'
@@ -10,7 +16,7 @@ import './handlers/chatHandler'
 // Load environment variables from .env file
 dotenv.config()
 
-function createWindow(): void {
+const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
@@ -28,6 +34,7 @@ function createWindow(): void {
     mainWindow.show()
   })
 
+  // Open links in the default browser
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
@@ -58,6 +65,19 @@ app.whenReady().then(() => {
 
   createWindow()
 
+  // Register Ctrl+F12 global shortcut to toggle DevTools in both development and production
+  globalShortcut.register('CommandOrControl+F12', () => {
+    const windows = BrowserWindow.getAllWindows()
+    if (windows.length > 0) {
+      const mainWindow = windows[0]
+      if (mainWindow.webContents.isDevToolsOpened()) {
+        mainWindow.webContents.closeDevTools()
+      } else {
+        mainWindow.webContents.openDevTools()
+      }
+    }
+  })
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -65,14 +85,13 @@ app.whenReady().then(() => {
   })
 })
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+// Unregister all global shortcuts when the app is about to quit
+app.on('will-quit', () => {
+  globalShortcut.unregisterAll()
+})

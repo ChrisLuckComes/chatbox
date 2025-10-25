@@ -5,6 +5,8 @@ declare global {
     electron: ElectronAPI
     api: {
       sendMessage: (message: string) => Promise<string>
+      setApiKey: (apiKey: string) => Promise<{ success: boolean; error?: string }>
+      getApiKey: () => Promise<string | null>
     }
   }
 }
