@@ -49,8 +49,8 @@ jobs:
         with:
           name: windows-artifacts
           path: |
-            release/*.exe
-            !release/*-unpacked/
+            dist/*.exe
+            !dist/*-unpacked/
 
       - name: Upload MacOS Artifacts
         if: matrix.os == 'macos-latest'
@@ -58,8 +58,8 @@ jobs:
         with:
           name: macos-artifacts
           path: |
-            release/*.dmg
-            !release/*-unpacked/
+            dist/*.dmg
+            !dist/*-unpacked/
 
       - name: Upload Linux Artifacts
         if: matrix.os == 'ubuntu-latest'
@@ -67,9 +67,9 @@ jobs:
         with:
           name: linux-artifacts
           path: |
-            release/*.AppImage
-            release/*.deb
-            !release/*-unpacked/
+            dist/*.AppImage
+            dist/*.deb
+            !dist/*-unpacked/
 
   create-release:
     needs: build
