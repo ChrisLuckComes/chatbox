@@ -1,0 +1,17 @@
+{
+  "types": [
+    {"type": "feat", "section": "✨ 新功能"},
+    {"type": "fix", "section": "🐛 问题修复"},
+    {"type": "docs", "section": "📝 文档更新"},
+    {"type": "style", "section": "💄 样式更新"},
+    {"type": "refactor", "section": "♻️ 代码重构"},
+    {"type": "perf", "section": "⚡️ 性能优化"},
+    {"type": "test", "section": "✅ 测试"},
+    {"type": "build", "section": "📦 构建相关"},
+    {"type": "ci", "section": "🎡 CI配置"},
+    {"type": "chore", "section": "🔨 其他更改"}
+  ],
+  "releaseCommitMessageFormat": "chore(release): 发布 {{currentTag}}",
+  "header": "# 更新日志\n\n所有重要的更改都会记录在这里。",
+  "version": "0.1.0"
+}

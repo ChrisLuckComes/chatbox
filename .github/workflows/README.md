@@ -51,9 +51,26 @@
 - `WQ_API_KEY`: 万青 API 密钥（必需）
 - `GITHUB_TOKEN`: GitHub 令牌（自动提供，无需手动设置）
 
+## 如何获取构建包
+
+构建完成后，可以通过以下两种方式获取打包程序：
+
+1. **从 Actions 页面下载**
+   - 进入仓库的 "Actions" 页面
+   - 点击最新的构建记录
+   - 在页面底部的 "Artifacts" 部分下载：
+     - `windows-artifacts`: Windows 安装包（.exe）
+     - `macos-artifacts`: macOS 安装包（.dmg）
+     - `linux-artifacts`: Linux 安装包（.AppImage, .deb）
+
+2. **从 Releases 页面下载**（仅适用于版本发布）
+   - 进入仓库的 "Releases" 页面
+   - 选择对应的版本
+   - 下载对应平台的安装包
+
 ## 注意事项
 
 - 确保在推送代码前已经设置好所有必需的 secrets
 - 版本标签必须以 "v" 开头（例如 v1.0.0）
-- 构建产物会保存 90 天
-- 每个平台的构建结果会分开存储
+- Actions 构建产物会保存 90 天
+- Release 版本的构建包会永久保存
