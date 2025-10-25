@@ -1,6 +1,18 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.1-alpha.1](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.1-alpha.0...v0.1.1-alpha.1) (2025-10-25)
+
+
+### 🔨 其他更改
+
+* 添加版本管理配置 ([4742b84](https://github.com/ChrisLuckComes/chatbox/commit/4742b84b163209aa7b02da784f06a1add8d407ba))
+
+
+### 🐛 问题修复
+
+* 修正 GitHub Actions 构建产物路径 ([86f3952](https://github.com/ChrisLuckComes/chatbox/commit/86f3952d59520e102675aa8d0ff21dde60edeac2))
+
 ### 0.1.1-alpha.0 (2025-10-25)
 
 
