@@ -1,6 +1,13 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.1](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.1-alpha.2...v0.1.1) (2025-10-25)
+
+
+### 🐛 问题修复
+
+* 修正uses的版本 ([089289c](https://github.com/ChrisLuckComes/chatbox/commit/089289cf539ab692a63f36b174d62e8775cd8d05))
+
 ### [0.1.1-alpha.2](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.1-alpha.1...v0.1.1-alpha.2) (2025-10-25)
 
 
