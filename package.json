@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "author": "ChrisLuckComes",
+  "homepage": "https://github.com/ChrisLuckComes/chatbox",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisLuckComes/chatbox.git"
+  },
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",

@@ -6,10 +6,13 @@
 
 - 🎨 现代化的用户界面，使用 Tailwind CSS
 - 💬 实时聊天功能，支持多轮对话
-- 📝 聊天主题管理，可以创建和切换不同的聊天会话
+- 📝 聊天主题管理，支持创建、切换和重命名
+- ✨ 智能主题命名，自动根据对话内容命名
+- ⌨️ 打字机效果，逼真的 AI 回复动画
 - 🤖 集成 快手 KAT-Coder-Air V1 免费模型
 - 🔄 响应式设计，支持不同屏幕尺寸
 - 🚀 Electron 桌面应用，跨平台支持
+- 📝 详细的日志记录，便于调试和问题排查
 
 ## 技术栈
 
@@ -18,6 +21,8 @@
 - **后端通信**: Electron IPC
 - **AI 服务**: 快手 KAT-Coder-Air V1 API
 - **HTTP 客户端**: Axios
+- **配置管理**: electron-store
+- **日志系统**: electron-log
 
 ## 安装和运行
 
@@ -29,13 +34,25 @@ npm install
 
 ### 2. 配置 万青 StreamLake API 密钥
 
-在项目根目录创建 `.env` 文件并添加你的万青API密钥：
+你可以通过以下三种方式之一配置 API 密钥：
 
-```env
-WQ_API_KEY=your-api-key-here
-```
+1. **环境变量**：在项目根目录创建 `.env` 文件
+   ```env
+   WQ_API_KEY=your-api-key-here
+   ```
 
-> **重要**: 应用会自动加载 `.env` 文件中的环境变量。确保 `.env` 文件位于项目根目录。
+2. **配置文件**：创建 `app-config.json` 文件
+   ```json
+   {
+     "WQ_API_KEY": "your-api-key-here"
+   }
+   ```
+
+3. **默认配置**：复制 `app-config.default.json` 为 `app-config.json` 并填入密钥
+
+> **注意**: 
+> - 配置优先级：环境变量 > 配置文件
+> - 配置文件会在应用打包时自动打包进资源目录
 
 ### 3. 开发模式运行
 
