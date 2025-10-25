@@ -1,6 +1,18 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.1-alpha.2](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.1-alpha.1...v0.1.1-alpha.2) (2025-10-25)
+
+
+### 🎡 CI配置
+
+* 优化工作流触发条件，避免重复构建 ([7c7f2a1](https://github.com/ChrisLuckComes/chatbox/commit/7c7f2a179c8671bd7c1d2b65dfe937d2597be211))
+
+
+### ✨ 新功能
+
+* 修改build.yml以自动创建release ([93e1847](https://github.com/ChrisLuckComes/chatbox/commit/93e1847a243fe95f4977bda24a11006139acc3ff))
+
 ### [0.1.1-alpha.1](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.1-alpha.0...v0.1.1-alpha.1) (2025-10-25)
 
 
