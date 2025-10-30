@@ -1,6 +1,20 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.2-alpha.5](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.2...v0.1.2-alpha.5) (2025-10-30)
+
+
+### 🔨 其他更改
+
+* **release:** 发布 0.1.2-alpha.3 ([c1e651b](https://github.com/ChrisLuckComes/chatbox/commit/c1e651b72b627e9293e87e15bb09c7ab882966c3))
+* **release:** 发布 0.1.2-alpha.4 ([15deab2](https://github.com/ChrisLuckComes/chatbox/commit/15deab2a0d18ae26d2d502e4bf7dca7ee5190ff4))
+
+
+### 🐛 问题修复
+
+* add execute permissions for app-builder on Linux ([f55dc74](https://github.com/ChrisLuckComes/chatbox/commit/f55dc748f97235489d3a1752d204f2bbe87a9072))
+* update GitHub Actions to support alpha/beta releases ([f6b22a0](https://github.com/ChrisLuckComes/chatbox/commit/f6b22a0a24ef2dae54483babf380faad0d0ee05e))
+
 ### [0.1.2-alpha.4](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.2...v0.1.2-alpha.4) (2025-10-30)
 
 
