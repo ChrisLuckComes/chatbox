@@ -1,60 +1,49 @@
 <template>
-  <div 
-    v-if="showUpdateNotification" 
-    class="fixed top-4 right-4 z-50 bg-blue-50 text-white p-4 rounded-lg shadow-lg max-w-sm"
-  >
-    <div class="flex justify-between items-start">
-      <div>
+  <div
+    v-if="showUpdateNotification"
+    class="fixed top-4 right-4 z-50 bg-white text-gray-800 p-4 rounded-lg shadow-lg w-80">
+    <div class="flex justify-between items-start mb-2">
+      <div class="flex-1">
         <h3 class="font-bold text-lg">Update Available</h3>
         <p class="text-sm mt-1">Version {{ updateInfo?.version }} is ready to install</p>
-        
+
         <!-- Progress bar when downloading -->
         <div v-if="downloadProgress !== null" class="mt-2">
-          <div class="w-full bg-blue-300 rounded-full h-2">
-            <div 
-              class="bg-white h-2 rounded-full" 
-              :style="{ width: downloadProgress.percent + '%' }"
-            ></div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div class="bg-blue-500 h-2 rounded-full" :style="{ width: downloadProgress.percent + '%' }"></div>
           </div>
           <p class="text-xs mt-1">{{ Math.round(downloadProgress.percent) }}% downloaded</p>
         </div>
-      <button 
-        @click="closeNotification" 
-        class="ml-4 text-white hover:text-gray-200 focus:outline-none"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-      </button>
+      </div>
     </div>
-    
+    <button
+      class="text-gray-500 hover:text-gray-70 focus:outline-none cursor-pointer absolute top-2 right-2"
+      @click="closeNotification">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+          clip-rule="evenodd" />
+      </svg>
+    </button>
+
     <!-- Action buttons -->
-    <div v-if="!isDownloaded && downloadProgress === null" class="mt-3 flex space-x-2">
-      <button 
-        @click="installUpdate" 
-        class="px-3 py-1 bg-white text-blue-500 rounded text-sm hover:bg-gray-100"
-      >
+    <div v-if="!isDownloaded && downloadProgress === null" class="flex space-x-2">
+      <button class="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 flex-1" @click="installUpdate">
         Install Now
       </button>
-      <button 
-        @click="deferUpdate" 
-        class="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
-      >
+      <button class="px-3 py-1 bg-gray-200 text-gray-800 rounded text-sm hover:bg-gray-300 flex-1" @click="deferUpdate">
         Later
       </button>
     </div>
-    
-    <div v-else-if="isDownloaded" class="mt-3 flex space-x-2">
-      <button 
-        @click="restartAndInstall" 
-        class="px-3 py-1 bg-white text-blue-500 rounded text-sm hover:bg-gray-10"
-      >
+
+    <div v-else-if="isDownloaded" class="flex space-x-2">
+      <button
+        class="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 flex-1"
+        @click="restartAndInstall">
         Restart & Install
       </button>
-      <button 
-        @click="deferUpdate" 
-        class="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
-      >
+      <button class="px-3 py-1 bg-gray-200 text-gray-800 rounded text-sm hover:bg-gray-300 flex-1" @click="deferUpdate">
         Later
       </button>
     </div>
@@ -71,7 +60,7 @@ interface UpdateInfo {
 interface DownloadProgress {
   percent: number
   transferred: number
- total: number
+  total: number
 }
 
 const showUpdateNotification = ref(false)
@@ -105,7 +94,7 @@ const deferUpdate = () => {
 onMounted(() => {
   if (window.api) {
     // Listen for update available event
-    window.api.onUpdateAvailable((info) => {
+    window.api.onUpdateAvailable(info => {
       updateInfo.value = info
       isDownloaded.value = false
       downloadProgress.value = null
@@ -113,14 +102,14 @@ onMounted(() => {
     })
 
     // Listen for update downloaded event
-    window.api.onUpdateDownloaded((info) => {
+    window.api.onUpdateDownloaded(info => {
       updateInfo.value = info
       isDownloaded.value = true
       showUpdateNotification.value = true
     })
 
     // Listen for download progress
-    window.api.onUpdateProgress((progress) => {
+    window.api.onUpdateProgress(progress => {
       downloadProgress.value = progress
     })
   }
