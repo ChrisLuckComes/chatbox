@@ -47,6 +47,9 @@ jobs:
           WQ_API_KEY: ${{ secrets.WQ_API_KEY }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          sudo snap install snapcraft --classic || true
+          sudo apt-get update
+          sudo apt-get install -y libarchive-tools
           chmod +x node_modules/app-builder-bin/linux/x64/app-builder
           npm run build:linux
         
