@@ -1,6 +1,18 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.2-alpha.4](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.2...v0.1.2-alpha.4) (2025-10-30)
+
+
+### 🔨 其他更改
+
+* **release:** 发布 0.1.2-alpha.3 ([c1e651b](https://github.com/ChrisLuckComes/chatbox/commit/c1e651b72b627e9293e87e15bb09c7ab882966c3))
+
+
+### 🐛 问题修复
+
+* update GitHub Actions to support alpha/beta releases ([f6b22a0](https://github.com/ChrisLuckComes/chatbox/commit/f6b22a0a24ef2dae54483babf380faad0d0ee05e))
+
 ### [0.1.2-alpha.3](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.2...v0.1.2-alpha.3) (2025-10-30)
 
 ### [0.1.2-alpha.2](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.1...v0.1.2-alpha.2) (2025-10-25)
