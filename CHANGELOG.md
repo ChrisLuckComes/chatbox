@@ -1,6 +1,13 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.4-alpha.3](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.4-alpha.2...v0.1.4-alpha.3) (2025-10-30)
+
+
+### 🐛 问题修复
+
+* update publish config to use GitHub provider ([24f24f5](https://github.com/ChrisLuckComes/chatbox/commit/24f24f5e57637f1270e1774298e77a495366397c))
+
 ### [0.1.4-alpha.2](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.4-alpha.1...v0.1.4-alpha.2) (2025-10-30)
 
 
