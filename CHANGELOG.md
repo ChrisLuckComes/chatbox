@@ -1,6 +1,13 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.4-alpha.2](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.4-alpha.1...v0.1.4-alpha.2) (2025-10-30)
+
+
+### 🔨 其他更改
+
+* update UpdateNotification component style ([7aa6fab](https://github.com/ChrisLuckComes/chatbox/commit/7aa6fab5e9f03f25973a525f3258ff7ec1e7beed))
+
 ### [0.1.4-alpha.1](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.4-alpha.0...v0.1.4-alpha.1) (2025-10-30)
 
 ### [0.1.4-alpha.0](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.3...v0.1.4-alpha.0) (2025-10-30)
