@@ -1,6 +1,6 @@
 {
   "name": "chatbox",
-  "version": "0.1.2-alpha.5",
+  "version": "0.1.2-alpha.6",
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
   "author": "ChrisLuckComes",
