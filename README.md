@@ -1,5 +1,7 @@
 # ChatBox 聊天应用
 
+[![Latest Release](https://img.shields.io/github/v/release/ChrisLuckComes/chatbox?include_prereleases)](https://github.com/ChrisLuckComes/chatbox/releases)
+
 一个基于 Electron + Vue 3 + TypeScript 的桌面聊天应用，集成了 OpenAI API。
 
 ## 功能特性
