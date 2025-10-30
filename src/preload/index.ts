@@ -4,6 +4,21 @@ import { contextBridge, ipcRenderer } from 'electron'
 const api = {
   sendMessage: (message: string) => {
     return ipcRenderer.invoke('chat:sendMessage', message)
+  },
+   // Update-related APIs
+  onUpdateAvailable: (callback: (info: { version: string }) => void) => {
+    ipcRenderer.on('update-available', (_, info) => callback(info))
+  },
+  onUpdateDownloaded: (callback: (info: { version: string }) => void) => {
+    ipcRenderer.on('update-downloaded', (_, info) => callback(info))
+  },
+  onUpdateProgress: (callback: (progress: { percent: number; transferred: number; total: number }) => void) => {
+    ipcRenderer.on('update-progress', (_, progress) => callback(progress))
+  },
+  removeUpdateListeners: () => {
+    ipcRenderer.removeAllListeners('update-available')
+    ipcRenderer.removeAllListeners('update-downloaded')
+    ipcRenderer.removeAllListeners('update-progress')
   }
 }
 

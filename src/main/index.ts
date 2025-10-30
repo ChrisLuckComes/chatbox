@@ -10,44 +10,22 @@ log.initialize({ preload: true })
 log.transports.file.resolvePathFn = () => join(app.getPath('userData'), 'logs/main.log')
 log.info('Application starting...')
 
-// Import chat handler
+// Import chat, update, and IPC handlers
 import './handlers/chatHandler'
+import { checkForUpdates, setupUpdateHandlers } from './handlers/updateHandler'
+import { setupIpcHandlers } from './handlers/ipcHandler'
 
 // Load environment variables from .env file
 dotenv.config()
 
-const createWindow = (): void => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
-    show: false,
-    autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
-    webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
-    }
-  })
+// Set the application version in the log
+log.info(`Application version: ${app.getVersion()}`)
 
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-  })
+// Setup update handlers
+setupUpdateHandlers()
 
-  // Open links in the default browser
-  mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url)
-    return { action: 'deny' }
-  })
-
-  // HMR for renderer base on electron-vite cli.
-  // Load the remote URL for development or the local html file for production.
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
-  } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
-  }
-}
+// Setup IPC handlers
+setupIpcHandlers()
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -83,7 +61,45 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+
+  // Check for updates after app is ready (only in production)
+  setTimeout(() => {
+    checkForUpdates()
+  }, 3000) // Delay update check to avoid interfering with app startup
 })
+
+const createWindow = (): void => {
+  // Create the browser window.
+  const mainWindow = new BrowserWindow({
+    width: 900,
+    height: 670,
+    show: false,
+    autoHideMenuBar: true,
+    ...(process.platform === 'linux' ? { icon } : {}),
+    webPreferences: {
+      preload: join(__dirname, '../preload/index.js'),
+      sandbox: false
+    }
+  })
+
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show()
+  })
+
+  // Open links in the default browser
+  mainWindow.webContents.setWindowOpenHandler((details) => {
+    shell.openExternal(details.url)
+    return { action: 'deny' }
+  })
+
+  // HMR for renderer base on electron-vite cli.
+  // Load the remote URL for development or the local html file for production.
+  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+  } else {
+    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+  }
+}
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
