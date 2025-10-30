@@ -1,6 +1,15 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.2](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.7...v0.1.2) (2025-10-30)
+
+
+### ✨ 新功能
+
+* add auto-update functionality with notification UI ([4e17b7b](https://github.com/ChrisLuckComes/chatbox/commit/4e17b7bdec263ba180545cba208425ab20300942))
+* add GitHub releases badge to README ([cd788af](https://github.com/ChrisLuckComes/chatbox/commit/cd788afa73f75c1ff7de008ad912fc5ca8f8cbb1))
+* mark version update feature as completed ([9a275c4](https://github.com/ChrisLuckComes/chatbox/commit/9a275c454efd54cd5d5758e1bcd29a6f13437049))
+
 ### [0.1.2-alpha.7](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.2...v0.1.2-alpha.7) (2025-10-30)
 
 
