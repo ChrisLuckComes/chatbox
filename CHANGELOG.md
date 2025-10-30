@@ -1,6 +1,24 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.2-alpha.7](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.2...v0.1.2-alpha.7) (2025-10-30)
+
+
+### 🔨 其他更改
+
+* **release:** 发布 0.1.2-alpha.3 ([c1e651b](https://github.com/ChrisLuckComes/chatbox/commit/c1e651b72b627e9293e87e15bb09c7ab882966c3))
+* **release:** 发布 0.1.2-alpha.4 ([15deab2](https://github.com/ChrisLuckComes/chatbox/commit/15deab2a0d18ae26d2d502e4bf7dca7ee5190ff4))
+* **release:** 发布 0.1.2-alpha.5 ([01e8967](https://github.com/ChrisLuckComes/chatbox/commit/01e8967accd5da9490bbbbacd5b4be81b3cb7c71))
+* **release:** 发布 0.1.2-alpha.6 ([5b41eec](https://github.com/ChrisLuckComes/chatbox/commit/5b41eecc68e71cf53554c8857a0272483a6f0827))
+
+
+### 🐛 问题修复
+
+* add execute permissions for app-builder on Linux ([f55dc74](https://github.com/ChrisLuckComes/chatbox/commit/f55dc748f97235489d3a1752d204f2bbe87a9072))
+* install snapcraft and dependencies for Linux build ([d237b55](https://github.com/ChrisLuckComes/chatbox/commit/d237b5514130693a56d6562e899c5e8a92e1325c))
+* remove snap target from linux build to avoid snap store errors ([60669cf](https://github.com/ChrisLuckComes/chatbox/commit/60669cf05ceae0524f11529cfb91bb23a43561d4))
+* update GitHub Actions to support alpha/beta releases ([f6b22a0](https://github.com/ChrisLuckComes/chatbox/commit/f6b22a0a24ef2dae54483babf380faad0d0ee05e))
+
 ### [0.1.2-alpha.6](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.2-alpha.2...v0.1.2-alpha.6) (2025-10-30)
 
 
