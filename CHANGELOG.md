@@ -1,6 +1,8 @@
 # 更新日志
 
 所有重要的更改都会记录在这里。
+### [0.1.4-alpha.4](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.4-alpha.3...v0.1.4-alpha.4) (2025-10-30)
+
 ### [0.1.4-alpha.3](https://github.com/ChrisLuckComes/chatbox/compare/v0.1.4-alpha.2...v0.1.4-alpha.3) (2025-10-30)
 
 
